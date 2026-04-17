@@ -45,13 +45,12 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["charisma"] = self.choose_CHA.currentText()
             
             print(stats)
-            
+            #saves the info from stats to the json
             try:
                 filen_name = f"{character_name}.json"
                 with open(filen_name, "w") as f:
                     json.dump(stats, f, indent=4)
                 QMessageBox.information(self, "Success", f"Character saved as {filen_name}.")
-            
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"An error occurred while saving the character: {str(e)}")
                 
