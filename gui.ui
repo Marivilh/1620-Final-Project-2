@@ -30,13 +30,13 @@
     <property name="geometry">
      <rect>
       <x>-5</x>
-      <y>10</y>
+      <y>0</y>
       <width>511</width>
-      <height>431</height>
+      <height>441</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>6</number>
     </property>
     <widget class="QWidget" name="tab_Attributes">
      <attribute name="title">
@@ -2161,6 +2161,11 @@
     <widget class="QWidget" name="tab_Spells">
      <attribute name="title">
       <string>Spells</string>
+     </attribute>
+    </widget>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>LOAD</string>
      </attribute>
     </widget>
    </widget>

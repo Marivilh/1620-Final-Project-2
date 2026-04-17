@@ -3,7 +3,7 @@ import json
 from PyQt6.QtWidgets import *
 
 class Logic(QMainWindow, Ui_mainWindow):
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__()
         self.setupUi(self)
         
@@ -11,12 +11,12 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.button_Save.clicked.connect(lambda : self.save())
         self.button_Reset.clicked.connect(lambda : self.reset())
         
-    def reset(self):
+    def reset(self) -> None:
         #resets ALL the fields to default
         #TODO: reset everything after a confirmation message
         pass
         
-    def get_attributes(self):
+    def get_attributes(self) -> dict:
         stats = {}
     
         character_name = self.input_Name.text().strip() if len(self.input_Name.text().strip()) > 0 else ""
@@ -51,27 +51,27 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["charisma"] = self.choose_CHA.currentText()
             return stats, character_name
             
-    def get_skills(self):
+    def get_skills(self) -> None:
         #TODO: get the skills and proficiencies
         pass
     
-    def get_proficiencies(self):
+    def get_proficiencies(self) -> None:
         #TODO: i dont think this one is needed (check over the stat sheet structure)
         pass
     
-    def get_features(self):
+    def get_features(self) -> None:
         #TODO: get the features and traits
         pass
     
-    def get_details(self):
+    def get_details(self) -> None:
         #TODO: get details (age, height, weight, eyes, skin, hair, and detailed background)
         pass
     
-    def get_spells(self):
-        #get spells (if any)
+    def get_spells(self) -> None:
+        #TODO: get spells (if any)
         pass
         
-    def save(self):
+    def save(self) -> None:
         #saves the info from stats to the json
         stats, character_name = self.get_attributes()
         try:
