@@ -9,6 +9,12 @@ class Logic(QMainWindow, Ui_mainWindow):
         
         self.label_Feedback.setText("")
         self.button_Save.clicked.connect(lambda : self.save())
+        self.button_Reset.clicked.connect(lambda : self.reset())
+        
+    def reset(self):
+        #resets ALL the fields to default
+        #TODO: reset everything after a confirmation message
+        pass
         
     def get_attributes(self):
         stats = {}
@@ -46,18 +52,23 @@ class Logic(QMainWindow, Ui_mainWindow):
             return stats, character_name
             
     def get_skills(self):
+        #TODO: get the skills and proficiencies
         pass
     
     def get_proficiencies(self):
+        #TODO: i dont think this one is needed (check over the stat sheet structure)
         pass
     
     def get_features(self):
+        #TODO: get the features and traits
         pass
     
     def get_details(self):
+        #TODO: get details (age, height, weight, eyes, skin, hair, and detailed background)
         pass
     
     def get_spells(self):
+        #get spells (if any)
         pass
         
     def save(self):
