@@ -10,9 +10,9 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.label_Feedback.setText("")
         self.button_Save.clicked.connect(lambda : self.save())
         
-    def save(self):
+    def get_attributes(self):
         stats = {}
-        
+    
         character_name = self.input_Name.text().strip() if len(self.input_Name.text().strip()) > 0 else ""
         # check if the name is valid
         if character_name == "":
@@ -26,7 +26,7 @@ class Logic(QMainWindow, Ui_mainWindow):
             #self.label_Feedback.setText("Character name cannot contain special characters.")
             #self.label_Feedback.setStyleSheet("color: red;")
             return
-        
+    
         else:
             #get the name, class, race, bg, alignment, and level
             stats["name"] = character_name  
@@ -43,15 +43,32 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["intelligence"] = self.choose_INT.currentText()
             stats["wisdom"] = self.choose_WIS.currentText()
             stats["charisma"] = self.choose_CHA.currentText()
+            return stats, character_name
             
-            print(stats)
-            #saves the info from stats to the json
-            try:
-                filen_name = f"{character_name}.json"
-                with open(filen_name, "w") as f:
-                    json.dump(stats, f, indent=4)
-                QMessageBox.information(self, "Success", f"Character saved as {filen_name}.")
-            except Exception as e:
-                QMessageBox.critical(self, "Error", f"An error occurred while saving the character: {str(e)}")
+    def get_skills(self):
+        pass
+    
+    def get_proficiencies(self):
+        pass
+    
+    def get_features(self):
+        pass
+    
+    def get_details(self):
+        pass
+    
+    def get_spells(self):
+        pass
+        
+    def save(self):
+        #saves the info from stats to the json
+        stats, character_name = self.get_attributes()
+        try:
+            filen_name = f"{character_name}.json"
+            with open(filen_name, "w") as f:
+                json.dump(stats, f, indent=4)
+            QMessageBox.information(self, "Success", f"Character saved as {filen_name}.")
+        except Exception as e:
+            QMessageBox.critical(self, "Error", f"An error occurred while saving the character: {str(e)}")
                 
 
