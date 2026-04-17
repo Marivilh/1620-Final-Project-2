@@ -34,7 +34,7 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["race"] = self.input_Race.text().strip() if len(self.input_Race.text().strip()) > 0 else ""
             stats["background"] = self.input_Background.text().strip() if len(self.input_Background.text().strip()) > 0 else ""
             stats["alignment"] = self.choose_Alignment.currentText()
-            stats["level"] = self.choose_Level.value()  
+            stats["level"] = self.choose_Level.currentText()
             
             #get the stats
             stats["strength"] = self.choose_STR.currentText()
@@ -45,3 +45,14 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["charisma"] = self.choose_CHA.currentText()
             
             print(stats)
+            
+            try:
+                filen_name = f"{character_name}.json"
+                with open(filen_name, "w") as f:
+                    json.dump(stats, f, indent=4)
+                QMessageBox.information(self, "Success", f"Character saved as {filen_name}.")
+            
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"An error occurred while saving the character: {str(e)}")
+                
+
