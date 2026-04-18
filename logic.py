@@ -7,15 +7,19 @@ class Logic(QMainWindow, Ui_mainWindow):
         super().__init__()
         self.setupUi(self)
         
+        # set the default labels
         self.label_Feedback.setText("")
         self.tabWidget.setCurrentIndex(0)
         self.input_Name.setFocus()
+        self.label_Load_Feedback.setText("")
+        
         # load the buttons
         self.button_Save.clicked.connect(lambda : self.save())
         self.button_Reset.clicked.connect(lambda : self.reset())
-        self.button_Load.clicked.connect(lambda : self.load_json())
+        self.button_Load.clicked.connect(lambda : self.load_character())
         
         #update the modifier labels and skills when the attribute scores are changed
+        self.choose_Level.currentTextChanged.connect(lambda : self.update_modifiers())
         self.choose_STR.currentTextChanged.connect(lambda : self.update_modifiers())
         self.choose_DEX.currentTextChanged.connect(lambda : self.update_modifiers())
         self.choose_CON.currentTextChanged.connect(lambda : self.update_modifiers())
@@ -117,6 +121,9 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.choose_Sleight_of_Hand.setValue(dex_bonus)
         self.choose_Stealth.setValue(dex_bonus)
         self.choose_Survival.setValue(wis_bonus)
+        
+        #update hit dice
+        self.choose_Hit_Dice.setValue(int(self.choose_Level.currentText()) if self.choose_Level.currentText() != "0" else 1)
 
     def reset(self) -> None:
         """
@@ -256,6 +263,13 @@ class Logic(QMainWindow, Ui_mainWindow):
             stats["Intelligence"] = self.choose_INT.currentText()
             stats["Wisdom"] = self.choose_WIS.currentText()
             stats["Charisma"] = self.choose_CHA.currentText()
+            
+            # get the AC, initiative, speed, HP, and hit dice
+            stats["AC"] = self.choose_AC.value()
+            stats["Initiative"] = self.choose_Initiative.value()
+            stats["Speed"] = self.choose_Speed.value()
+            stats["Hit_Points"] = self.choose_Hit_Points.value()
+            stats["Hit_Dice"] = self.choose_Hit_Dice.value()
             
             return stats, character_name
             
@@ -409,9 +423,60 @@ class Logic(QMainWindow, Ui_mainWindow):
                 self.label_Feedback.setStyleSheet("color: red;")
 
                 
-        def load_json(self) -> None:
-            """
-            loads a character from a json file
-            and populates the fields with the data
-            """
-            pass
+    def load_character(self) -> None:
+        """
+        loads a character from a json file
+        and populates the fields with the data
+        """
+        self.label_Load_Feedback.setText("Loading...")
+        self.QFile_Dialog = QFileDialog()
+        self.QFile_Dialog.setNameFilter("JSON files (*.json)")
+        if self.QFile_Dialog.exec():
+            file_path = self.QFile_Dialog.selectedFiles()[0]
+            try:
+                with open(file_path, "r") as f:
+                    data = json.load(f)
+                # populate the fields with the data
+                self.populate_fields(data)
+                QMessageBox.information(self, "Success", f"Character loaded from {file_path}.")
+                self.label_Load_Feedback.setText(f"Character loaded from {file_path}.")
+                self.label_Load_Feedback.setStyleSheet("color: green;")
+                self.tabWidget.setCurrentIndex(0)
+            except Exception as e:
+                QMessageBox.critical(self, "Error", f"An error occurred while loading the character: {str(e)}")
+                self.label_Load_Feedback.setText(f"An error occurred while loading the character: {str(e)}")
+                self.label_Load_Feedback.setStyleSheet("color: red;")
+                
+    def populate_fields(self, data: dict) -> None:
+        """
+        populates the fields with the data from the json file
+        """
+        # populate the attributes tab
+        attributes = data.get("Attributes", {})
+        self.input_Name.setText(attributes.get("Name", ""))
+        class_index = self.choose_Class.findText(attributes.get("Class", "None"))
+        self.choose_Class.setCurrentIndex(class_index)
+        self.input_Race.setText(attributes.get("Race", ""))
+        self.input_Background.setText(attributes.get("Background", ""))
+        self.choose_Alignment.setCurrentIndex(self.choose_Alignment.findText(attributes.get("Alignment", "None")))
+        self.choose_Level.setCurrentIndex(self.choose_Level.findText(attributes.get("Level", "0")))
+        self.choose_STR.setCurrentIndex(self.choose_STR.findText(attributes.get("Strength", "10")))
+        self.choose_DEX.setCurrentIndex(self.choose_DEX.findText(attributes.get("Dexterity", "10")))
+        self.choose_CON.setCurrentIndex(self.choose_CON.findText(attributes.get("Constitution", "10")))
+        self.choose_INT.setCurrentIndex(self.choose_INT.findText(attributes.get("Intelligence", "10")))
+        self.choose_WIS.setCurrentIndex(self.choose_WIS.findText(attributes.get("Wisdom", "10")))
+        self.choose_CHA.setCurrentIndex(self.choose_CHA.findText(attributes.get("Charisma", "10")))
+        self.update_modifiers() # update the modifiers after setting the attributes
+        
+        self.choose_AC.setValue(int(attributes.get("AC", "10")))
+        self.choose_Initiative.setValue(int(attributes.get("Initiative", "1")))
+        self.choose_Speed.setValue(int(attributes.get("Speed", "30")))
+        self.choose_Hit_Points.setValue(int(attributes.get("Hit_Points", "10")))
+        self.choose_Hit_Dice.setValue(int(attributes.get("Hit_Dice", "1")))
+        
+        self.label_Feedback.setText("Character loaded. Please check all tabs to ensure data is correct.")
+        self.label_Feedback.setStyleSheet("color: green;")
+        
+        # TODO: populate the skills tab
+        
+        
