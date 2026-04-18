@@ -1284,10 +1284,10 @@
      <widget class="QSpinBox" name="choose_AC">
       <property name="geometry">
        <rect>
-        <x>71</x>
-        <y>311</y>
-        <width>51</width>
-        <height>19</height>
+        <x>60</x>
+        <y>310</y>
+        <width>71</width>
+        <height>20</height>
        </rect>
       </property>
       <property name="minimum">

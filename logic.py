@@ -14,7 +14,42 @@ class Logic(QMainWindow, Ui_mainWindow):
     def reset(self) -> None:
         #resets ALL the fields to default
         #TODO: reset everything after a confirmation message
-        pass
+        confirm = QMessageBox.question(self, "Confirm Reset", "Are you sure you want to reset the character sheet? All unsaved data will be lost.", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
+        if confirm == QMessageBox.StandardButton.Yes:
+            # reset all the text fields
+            self.input_Name.setText("")
+            self.input_Race.setText("")
+            self.input_Background.setText("")
+            self.input_Armor_Prof.setText("")
+            self.input_Weapons_Prof.setText("")
+            self.input_Tools_Prof.setText("")
+            self.input_Language_Prof.setText("")
+            self.input_Other_Profs.setText("")
+            self.input_Equipment.setPlainText("")
+            self.input_Features_and_Traits.setPlainText("")
+            self.input_Character_Backstory.setPlainText("")
+            self.input_Treasure.setPlainText("")
+            self.input_Allies.setPlainText("")
+            self.input_Extra_Features.setPlainText("")
+            self.input_Age.setText("")
+            self.input_Height.setText("")
+            self.input_Weight.setText("")
+            self.input_Eyes.setText("")
+            self.input_Skin.setText("")
+            self.input_Hair.setText("")
+            self.input_Spellcasting_Class.setText("")
+            self.input_Cantrips.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_1_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_2_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_3_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_4_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_5_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_6_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_7_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_8_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            self.input_Level_9_Spells.setPlainText("# of Spell Slots\n(Spells)")
+            
+            #TODO: reset the rest
         
     def get_attributes(self) -> dict:
         stats = {}
