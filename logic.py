@@ -367,21 +367,21 @@ class Logic(QMainWindow, Ui_mainWindow):
         # get the spellcasting class, ability, save dc, and atk bonus
         spells["Spellcasting_Class"] = self.input_Spellcasting_Class.text().strip() if len(self.input_Spellcasting_Class.text().strip()) > 0 else "None"
         spells["Spellcasting_Ability"] = self.choose_Spellcasting_Ability.currentText() if self.choose_Spellcasting_Ability.currentText() != "" else "None"
-        spells["Spell_Save_DC"] = self.choose_Spell_Save_DC.value() if self.choose_Spell_Save_DC != "0" else "None"
-        spells["Spell_Attack_Bonus"] = self.choose_Spell_Attack_Bonus.value() if self.choose_Spell_Attack_Bonus != "0" else "None"
+        spells["Spell_Save_DC"] = self.choose_Spell_Save_DC.value() if self.choose_Spell_Save_DC.value() != "0" else "None"
+        spells["Spell_Attack_Bonus"] = self.choose_Spell_Attack_Bonus.value() if self.choose_Spell_Attack_Bonus.value() != "0" else "None"
 
         # get the actuall spells now
         default_spell_text = "# of Spell Slots\n(Spells)"
         spells["Cantrips"] = self.input_Cantrips.toPlainText().strip() if len(self.input_Cantrips.toPlainText().strip()) > 0 and self.input_Cantrips.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_1_Spells"] = self.input_Level_1_Spells.toPlainText().strip() if len(self.input_Level_1_Spells.toPlainText().strip()) > 0 and self.input_Level_1_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_2_Spells"] = self.input_Level_2_Spells.toPlainText().strip() if len(self.input_Level_2_Spells.toPlainText().strip()) > 0 and self.input_Level_2_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_3_Spells"] = self.input_Level_3_Spells.toPlainText().strip() if len(self.input_Level_3_Spells.toPlainText().strip()) > 0 and self.input_Level_3_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_4_Spells"] = self.input_Level_4_Spells.toPlainText().strip() if len(self.input_Level_4_Spells.toPlainText().strip()) > 0 and self.input_Level_4_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_5_Spells"] = self.input_Level_5_Spells.toPlainText().strip() if len(self.input_Level_5_Spells.toPlainText().strip()) > 0 and self.input_Level_5_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_6_Spells"] = self.input_Level_6_Spells.toPlainText().strip() if len(self.input_Level_6_Spells.toPlainText().strip()) > 0 and self.input_Level_6_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_7_Spells"] = self.input_Level_7_Spells.toPlainText().strip() if len(self.input_Level_7_Spells.toPlainText().strip()) > 0 and self.input_Level_7_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_8_Spells"] = self.input_Level_8_Spells.toPlainText().strip() if len(self.input_Level_8_Spells.toPlainText().strip()) > 0 and self.input_Level_8_Spells.toPlainText().strip() != default_spell_text else "None"
-        spells["Level_9_Spells"] = self.input_Level_9_Spells.toPlainText().strip() if len(self.input_Level_9_Spells.toPlainText().strip()) > 0 and self.input_Level_9_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_1_Spells"] = self.input_Level_1_Spells.toPlainText().strip() if self.input_Level_1_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_2_Spells"] = self.input_Level_2_Spells.toPlainText().strip() if self.input_Level_2_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_3_Spells"] = self.input_Level_3_Spells.toPlainText().strip() if self.input_Level_3_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_4_Spells"] = self.input_Level_4_Spells.toPlainText().strip() if self.input_Level_4_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_5_Spells"] = self.input_Level_5_Spells.toPlainText().strip() if self.input_Level_5_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_6_Spells"] = self.input_Level_6_Spells.toPlainText().strip() if self.input_Level_6_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_7_Spells"] = self.input_Level_7_Spells.toPlainText().strip() if self.input_Level_7_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_8_Spells"] = self.input_Level_8_Spells.toPlainText().strip() if self.input_Level_8_Spells.toPlainText().strip() != default_spell_text else "None"
+        spells["Level_9_Spells"] = self.input_Level_9_Spells.toPlainText().strip() if self.input_Level_9_Spells.toPlainText().strip() != default_spell_text else "None"
         
         return spells
 
@@ -459,14 +459,16 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.input_Race.setText(attributes.get("Race", ""))
         self.input_Background.setText(attributes.get("Background", ""))
         self.choose_Alignment.setCurrentIndex(self.choose_Alignment.findText(attributes.get("Alignment", "None")))
-        self.choose_Level.setCurrentIndex(self.choose_Level.findText(attributes.get("Level", "0")))
+        self.choose_Level.setCurrentIndex(self.choose_Level.findText(attributes.get("Level", "1")))
         self.choose_STR.setCurrentIndex(self.choose_STR.findText(attributes.get("Strength", "10")))
         self.choose_DEX.setCurrentIndex(self.choose_DEX.findText(attributes.get("Dexterity", "10")))
         self.choose_CON.setCurrentIndex(self.choose_CON.findText(attributes.get("Constitution", "10")))
         self.choose_INT.setCurrentIndex(self.choose_INT.findText(attributes.get("Intelligence", "10")))
         self.choose_WIS.setCurrentIndex(self.choose_WIS.findText(attributes.get("Wisdom", "10")))
         self.choose_CHA.setCurrentIndex(self.choose_CHA.findText(attributes.get("Charisma", "10")))
-        self.update_modifiers() # update the modifiers after setting the attributes
+        # update the modifiers after setting the attributes
+        #this also fills the skils tab
+        self.update_modifiers() 
         
         self.choose_AC.setValue(int(attributes.get("AC", "10")))
         self.choose_Initiative.setValue(int(attributes.get("Initiative", "1")))
@@ -477,6 +479,46 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.label_Feedback.setText("Character loaded. Please check all tabs to ensure data is correct.")
         self.label_Feedback.setStyleSheet("color: green;")
         
-        # TODO: populate the skills tab
+        # populate the proficiencies tab
+        proficiencies = data.get("Proficiencies", {})
+        self.input_Armor_Prof.setText(proficiencies.get("Armor", ""))
+        self.input_Weapons_Prof.setText(proficiencies.get("Weapons", ""))
+        self.input_Tools_Prof.setText(proficiencies.get("Tools", ""))
+        self.input_Language_Prof.setText(proficiencies.get("Languages", ""))
+        self.input_Other_Profs.setText(proficiencies.get("Other", ""))
+        self.input_Equipment.setText(proficiencies.get("Equipment", ""))
         
+        # fill the features tab
+        features = data.get("Features", {})
+        self.input_Features_and_Traits.setText(features.get("Features_and_Traits", ""))
         
+        #fill the deets tab
+        details = data.get("Details", {})
+        self.input_Age.setText(details.get("Age", ""))
+        self.input_Height.setText(details.get("Height", ""))
+        self.input_Weight.setText(details.get("Weight", ""))
+        self.input_Eyes.setText(details.get("Eyes", ""))
+        self.input_Skin.setText(details.get("Skin", ""))
+        self.input_Hair.setText(details.get("Hair", ""))
+        self.input_Character_Backstory.setText(details.get("Detailed_Background", ""))
+        self.input_Treasure.setText(details.get("Treasure", ""))
+        self.input_Allies.setText(details.get("Allies", ""))
+        self.input_Extra_Features.setText(details.get("Extra_Features", ""))
+        
+        # TODO: fill the spells pages
+        spells = data.get("Spells", {})
+        self.input_Spellcasting_Class.setText(spells.get("Spellcasting_Class", ""))
+        self.choose_Spellcasting_Ability.setCurrentIndex(self.choose_Spellcasting_Ability.findText(spells.get("Spellcasting_Ability", "")))
+        self.choose_Spell_Save_DC.setValue(int(spells.get("Spell_Save_DC", "0")))
+        self.choose_Spell_Attack_Bonus.setValue(int(spells.get("Spell_Attack_Bonus", "0")))
+
+        self.input_Cantrips.setText(spells.get("Cantrips", ""))
+        self.input_Level_1_Spells.setText(spells.get("Level_1_Spells", ""))
+        self.input_Level_2_Spells.setText(spells.get("Level_2_Spells", ""))
+        self.input_Level_3_Spells.setText(spells.get("Level_3_Spells", ""))
+        self.input_Level_4_Spells.setText(spells.get("Level_4_Spells", ""))
+        self.input_Level_5_Spells.setText(spells.get("Level_5_Spells", ""))
+        self.input_Level_6_Spells.setText(spells.get("Level_6_Spells", ""))
+        self.input_Level_7_Spells.setText(spells.get("Level_7_Spells", ""))
+        self.input_Level_8_Spells.setText(spells.get("Level_8_Spells", ""))
+        self.input_Level_9_Spells.setText(spells.get("Level_9_Spells", ""))
