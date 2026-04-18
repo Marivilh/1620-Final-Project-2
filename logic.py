@@ -12,6 +12,109 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.button_Save.clicked.connect(lambda : self.save())
         self.button_Reset.clicked.connect(lambda : self.reset())
         
+        #update the modifier labels and skills when the attribute scores are changed
+        self.choose_STR.currentTextChanged.connect(lambda : self.update_modifiers())
+        self.choose_DEX.currentTextChanged.connect(lambda : self.update_modifiers())
+        self.choose_CON.currentTextChanged.connect(lambda : self.update_modifiers())
+        self.choose_INT.currentTextChanged.connect(lambda : self.update_modifiers())
+        self.choose_WIS.currentTextChanged.connect(lambda : self.update_modifiers())
+        self.choose_CHA.currentTextChanged.connect(lambda : self.update_modifiers())
+          
+    def update_modifiers(self) -> None:
+        """
+        updates the modifiers for the attributes and skills
+        """
+        # update the feedback label
+        self.label_Feedback.setText("Core Stats Updated. Re-apply any proficiencies to the Skills Tab.")
+        self.label_Feedback.setStyleSheet("color: orange;")
+        
+        bonuses = {}
+        str_bonus = (int(self.choose_STR.currentText()) - 10) // 2
+        bonuses["STR"] = str_bonus
+        dex_bonus = (int(self.choose_DEX.currentText()) - 10) // 2
+        bonuses["DEX"] = dex_bonus
+        con_bonus = (int(self.choose_CON.currentText()) - 10) // 2
+        bonuses["CON"] = con_bonus
+        int_bonus = (int(self.choose_INT.currentText()) - 10) // 2
+        bonuses["INT"] = int_bonus
+        wis_bonus = (int(self.choose_WIS.currentText()) - 10) // 2
+        bonuses["WIS"] = wis_bonus
+        cha_bonus = (int(self.choose_CHA.currentText()) - 10) // 2
+        bonuses["CHA"] = cha_bonus
+        
+        # update the labels in arttributes tab    
+        for stat, bonus in bonuses.items():
+            if stat == "STR":
+                if bonus >= 0:
+                    self.label_STR_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_STR_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_STR_Bonus.setText("(+0)")
+            elif stat == "DEX":
+                if bonus >= 0:
+                    self.label_DEX_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_DEX_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_DEX_Bonus.setText("(+0)")
+            elif stat == "CON":
+                if bonus >= 0:
+                    self.label_CON_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_CON_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_CON_Bonus.setText("(+0)")
+            elif stat == "INT":
+                if bonus >= 0:
+                    self.label_INT_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_INT_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_INT_Bonus.setText("(+0)")
+            elif stat == "WIS":
+                if bonus >= 0:
+                    self.label_WIS_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_WIS_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_WIS_Bonus.setText("(+0)")
+            elif stat == "CHA":
+                if bonus >= 0:
+                    self.label_CHA_Bonus.setText(f"(+{bonus})")
+                elif bonus < 0:
+                    self.label_CHA_Bonus.setText(f"({bonus})")
+                else:
+                    self.label_CHA_Bonus.setText("(+0)")
+                    
+        # update the saving throw modifiers
+        self.choose_STR_mod.setValue(str_bonus)
+        self.choose_DEX_mod.setValue(dex_bonus)
+        self.choose_CON_mod.setValue(con_bonus)
+        self.choose_INT_mod.setValue(int_bonus)
+        self.choose_WIS_mod.setValue(wis_bonus)
+        self.choose_CHA_mod.setValue(cha_bonus)
+        
+        # update the skill modifiers
+        self.choose_Acrobatics.setValue(dex_bonus)
+        self.choose_Animal_Handling.setValue(wis_bonus)
+        self.choose_Arcana.setValue(int_bonus)
+        self.choose_Athletics.setValue(str_bonus)
+        self.choose_Deception.setValue(cha_bonus)
+        self.choose_History.setValue(int_bonus)
+        self.choose_Insight.setValue(wis_bonus)
+        self.choose_Intimidation.setValue(cha_bonus)
+        self.choose_Investigation.setValue(int_bonus)
+        self.choose_Medicine.setValue(wis_bonus)
+        self.choose_Nature.setValue(int_bonus)
+        self.choose_Perception.setValue(wis_bonus)
+        self.choose_Performance.setValue(cha_bonus)
+        self.choose_Persuasion.setValue(cha_bonus)
+        self.choose_Religion.setValue(int_bonus)
+        self.choose_Sleight_of_Hand.setValue(dex_bonus)
+        self.choose_Stealth.setValue(dex_bonus)
+        self.choose_Survival.setValue(wis_bonus)
+
     def reset(self) -> None:
         """
         resets everything back to default
@@ -68,6 +171,12 @@ class Logic(QMainWindow, Ui_mainWindow):
             self.choose_Speed.setValue(30)
             self.choose_Hit_Points.setValue(1)
             self.choose_Hit_Dice.setValue(0)
+            self.label_STR_Bonus.setText("(+0)")
+            self.label_DEX_Bonus.setText("(+0)")
+            self.label_CON_Bonus.setText("(+0)")
+            self.label_INT_Bonus.setText("(+0)")
+            self.label_WIS_Bonus.setText("(+0)")
+            self.label_CHA_Bonus.setText("(+0)")
             
             #reset all in Skills Tab
             self.choose_STR_mod.setValue(0)
@@ -102,6 +211,10 @@ class Logic(QMainWindow, Ui_mainWindow):
             #set focus back to name entry
             self.tabWidget.setCurrentIndex(0)
             self.input_Name.setFocus()
+            
+            #update the feedback label
+            self.label_Feedback.setText("Character sheet reset to default.")
+            self.label_Feedback.setStyleSheet("color: green;")
         
     def get_attributes(self) -> dict:
         """get
@@ -115,14 +228,14 @@ class Logic(QMainWindow, Ui_mainWindow):
         # check if the name is valid
         if character_name == "":
             QMessageBox.critical(self, "Error", "Please enter a character name.") #auto fill recommended this and i liked it
-            #self.label_Feedback.setText("Please enter a character name.")
-            #self.label_Feedback.setStyleSheet("color: red;")
+            self.label_Feedback.setText("Please enter a character name.")
+            self.label_Feedback.setStyleSheet("color: red;")
             return
         # no weird characs in the name
         elif character_name in ["/", "\\", "|", ":", "*"]:
             QMessageBox.critical(self, "Error", "Character name cannot contain special characters.")
-            #self.label_Feedback.setText("Character name cannot contain special characters.")
-            #self.label_Feedback.setStyleSheet("color: red;")
+            self.label_Feedback.setText("Character name cannot contain special characters.")
+            self.label_Feedback.setStyleSheet("color: red;")
             return
     
         else:
@@ -287,7 +400,12 @@ class Logic(QMainWindow, Ui_mainWindow):
                 with open(filen_name, "w") as f:
                     json.dump(all_stats, f, indent=4)
                 QMessageBox.information(self, "Success", f"Character saved as {filen_name}.")
+                self.label_Feedback.setText(f"Character saved as {filen_name}.")
+                self.label_Feedback.setStyleSheet("color: green;")
             except Exception as e:
                 QMessageBox.critical(self, "Error", f"An error occurred while saving the character: {str(e)}")
+                self.label_Feedback.setText(f"An error occurred while saving the character: {str(e)}")
+                self.label_Feedback.setStyleSheet("color: red;")
+
                 
 
