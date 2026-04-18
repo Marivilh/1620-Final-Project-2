@@ -805,6 +805,9 @@ class Ui_mainWindow(object):
         self.tabWidget.addTab(self.tab_2, "")
         self.tab = QtWidgets.QWidget()
         self.tab.setObjectName("tab")
+        self.button_Load = QtWidgets.QPushButton(parent=self.tab)
+        self.button_Load.setGeometry(QtCore.QRect(50, 30, 81, 31))
+        self.button_Load.setObjectName("button_Load")
         self.tabWidget.addTab(self.tab, "")
         self.button_Save = QtWidgets.QPushButton(parent=self.centralwidget)
         self.button_Save.setGeometry(QtCore.QRect(180, 440, 56, 17))
@@ -822,7 +825,7 @@ class Ui_mainWindow(object):
         mainWindow.setStatusBar(self.statusbar)
 
         self.retranslateUi(mainWindow)
-        self.tabWidget.setCurrentIndex(0)
+        self.tabWidget.setCurrentIndex(7)
         self.choose_Alignment.setCurrentIndex(0)
         self.choose_STR.setCurrentIndex(9)
         self.choose_DEX.setCurrentIndex(9)
@@ -1161,6 +1164,7 @@ class Ui_mainWindow(object):
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\"># of Spell Slots</p>\n"
 "<p style=\" margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;\">(Spells)</p></body></html>"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab_2), _translate("mainWindow", "Spells (cont.)"))
+        self.button_Load.setText(_translate("mainWindow", "Load .json"))
         self.tabWidget.setTabText(self.tabWidget.indexOf(self.tab), _translate("mainWindow", "LOAD"))
         self.button_Save.setText(_translate("mainWindow", "SAVE"))
         self.button_Reset.setText(_translate("mainWindow", "RESET"))

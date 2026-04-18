@@ -8,9 +8,12 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.setupUi(self)
         
         self.label_Feedback.setText("")
+        self.tabWidget.setCurrentIndex(0)
         self.input_Name.setFocus()
+        # load the buttons
         self.button_Save.clicked.connect(lambda : self.save())
         self.button_Reset.clicked.connect(lambda : self.reset())
+        self.button_Load.clicked.connect(lambda : self.load_json())
         
         #update the modifier labels and skills when the attribute scores are changed
         self.choose_STR.currentTextChanged.connect(lambda : self.update_modifiers())
@@ -120,7 +123,6 @@ class Logic(QMainWindow, Ui_mainWindow):
         resets everything back to default
         """
         #resets ALL the fields to default
-        #TODO: reset everything after a confirmation message
         confirm = QMessageBox.question(self, "Confirm Reset", "Are you sure you want to reset the character sheet? All unsaved data will be lost.", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         if confirm == QMessageBox.StandardButton.Yes:
             # reset all the text fields
@@ -170,7 +172,7 @@ class Logic(QMainWindow, Ui_mainWindow):
             self.choose_Initiative.setValue(1)
             self.choose_Speed.setValue(30)
             self.choose_Hit_Points.setValue(1)
-            self.choose_Hit_Dice.setValue(0)
+            self.choose_Hit_Dice.setValue(1)
             self.label_STR_Bonus.setText("(+0)")
             self.label_DEX_Bonus.setText("(+0)")
             self.label_CON_Bonus.setText("(+0)")
@@ -262,7 +264,6 @@ class Logic(QMainWindow, Ui_mainWindow):
         gets the info from the Skills tab 
         and returns it as a dict
         """
-        #TODO: get the skills and proficiencies
         # get the saving throws
         skills = {}
         skills["STR_save"] = self.choose_STR_mod.value()
@@ -351,10 +352,10 @@ class Logic(QMainWindow, Ui_mainWindow):
         spells = {}
         # get the spellcasting class, ability, save dc, and atk bonus
         spells["Spellcasting_Class"] = self.input_Spellcasting_Class.text().strip() if len(self.input_Spellcasting_Class.text().strip()) > 0 else "None"
-        spells["Spellcasting_Ability"] = self.choose_Spellcasting_Ability.currentText() if self.input_Spellcasting_Class.text().strip() != "" else "None"
-        spells["Spell_Save_DC"] = self.choose_Spell_Save_DC.value() if self.input_Spellcasting_Class.text().strip() != "0" else "None"
-        spells["Spell_Attack_Bonus"] = self.choose_Spell_Attack_Bonus.value() if self.input_Spellcasting_Class.text().strip() != "0" else "None"
-        
+        spells["Spellcasting_Ability"] = self.choose_Spellcasting_Ability.currentText() if self.choose_Spellcasting_Ability.currentText() != "" else "None"
+        spells["Spell_Save_DC"] = self.choose_Spell_Save_DC.value() if self.choose_Spell_Save_DC != "0" else "None"
+        spells["Spell_Attack_Bonus"] = self.choose_Spell_Attack_Bonus.value() if self.choose_Spell_Attack_Bonus != "0" else "None"
+
         # get the actuall spells now
         default_spell_text = "# of Spell Slots\n(Spells)"
         spells["Cantrips"] = self.input_Cantrips.toPlainText().strip() if len(self.input_Cantrips.toPlainText().strip()) > 0 and self.input_Cantrips.toPlainText().strip() != default_spell_text else "None"
@@ -408,4 +409,9 @@ class Logic(QMainWindow, Ui_mainWindow):
                 self.label_Feedback.setStyleSheet("color: red;")
 
                 
-
+        def load_json(self) -> None:
+            """
+            loads a character from a json file
+            and populates the fields with the data
+            """
+            pass
