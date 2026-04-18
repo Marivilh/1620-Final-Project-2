@@ -286,7 +286,7 @@ class Ui_mainWindow(object):
         self.label_Hit_Dice.setGeometry(QtCore.QRect(380, 280, 51, 16))
         self.label_Hit_Dice.setObjectName("label_Hit_Dice")
         self.choose_AC = QtWidgets.QSpinBox(parent=self.tab_Attributes)
-        self.choose_AC.setGeometry(QtCore.QRect(71, 311, 51, 19))
+        self.choose_AC.setGeometry(QtCore.QRect(60, 310, 71, 20))
         self.choose_AC.setMinimum(1)
         self.choose_AC.setMaximum(99)
         self.choose_AC.setObjectName("choose_AC")

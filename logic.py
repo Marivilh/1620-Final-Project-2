@@ -8,10 +8,14 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.setupUi(self)
         
         self.label_Feedback.setText("")
+        self.input_Name.setFocus()
         self.button_Save.clicked.connect(lambda : self.save())
         self.button_Reset.clicked.connect(lambda : self.reset())
         
     def reset(self) -> None:
+        """
+        resets everything back to default
+        """
         #resets ALL the fields to default
         #TODO: reset everything after a confirmation message
         confirm = QMessageBox.question(self, "Confirm Reset", "Are you sure you want to reset the character sheet? All unsaved data will be lost.", QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
@@ -48,10 +52,63 @@ class Logic(QMainWindow, Ui_mainWindow):
             self.input_Level_7_Spells.setPlainText("# of Spell Slots\n(Spells)")
             self.input_Level_8_Spells.setPlainText("# of Spell Slots\n(Spells)")
             self.input_Level_9_Spells.setPlainText("# of Spell Slots\n(Spells)")
+
+            #reset all in Attributes Tab
+            self.choose_Class.setCurrentIndex(0)
+            self.choose_Alignment.setCurrentIndex(0)
+            self.choose_Level.setCurrentIndex(0)
+            self.choose_STR.setCurrentIndex(9)
+            self.choose_DEX.setCurrentIndex(9)
+            self.choose_CON.setCurrentIndex(9)
+            self.choose_INT.setCurrentIndex(9)
+            self.choose_WIS.setCurrentIndex(9)
+            self.choose_CHA.setCurrentIndex(9)
+            self.choose_AC.setValue(1)
+            self.choose_Initiative.setValue(1)
+            self.choose_Speed.setValue(30)
+            self.choose_Hit_Points.setValue(1)
+            self.choose_Hit_Dice.setValue(0)
             
-            #TODO: reset the rest
+            #reset all in Skills Tab
+            self.choose_STR_mod.setValue(0)
+            self.choose_DEX_mod.setValue(0)
+            self.choose_CON_mod.setValue(0)
+            self.choose_INT_mod.setValue(0)
+            self.choose_WIS_mod.setValue(0)
+            self.choose_CHA_mod.setValue(0)
+            self.choose_Acrobatics.setValue(0)
+            self.choose_Animal_Handling.setValue(0)
+            self.choose_Arcana.setValue(0)
+            self.choose_Athletics.setValue(0)
+            self.choose_Deception.setValue(0)
+            self.choose_History.setValue(0)
+            self.choose_Insight.setValue(0)
+            self.choose_Intimidation.setValue(0)
+            self.choose_Investigation.setValue(0)
+            self.choose_Medicine.setValue(0)
+            self.choose_Nature.setValue(0)
+            self.choose_Perception.setValue(0)
+            self.choose_Performance.setValue(0)
+            self.choose_Persuasion.setValue(0)
+            self.choose_Religion.setValue(0)
+            self.choose_Sleight_of_Hand.setValue(0)
+            self.choose_Stealth.setValue(0)
+            self.choose_Survival.setValue(0)
+            #reset all in Spells Tab
+            self.choose_Spellcasting_Ability.setCurrentIndex(0)
+            self.choose_Spell_Save_DC.setValue(0)
+            self.choose_Spell_Attack_Bonus.setValue(0)
+            
+            #set focus back to name entry
+            self.tabWidget.setCurrentIndex(0)
+            self.input_Name.setFocus()
         
     def get_attributes(self) -> dict:
+        """get
+        gets the info from the Attributes tab and returns
+        it as a dict.
+        also cheks the validity of the chracters name
+        """
         stats = {}
     
         character_name = self.input_Name.text().strip() if len(self.input_Name.text().strip()) > 0 else ""
@@ -70,24 +127,28 @@ class Logic(QMainWindow, Ui_mainWindow):
     
         else:
             #get the name, class, race, bg, alignment, and level
-            stats["name"] = character_name  
-            stats["class"] = self.choose_Class.currentText()
-            stats["race"] = self.input_Race.text().strip() if len(self.input_Race.text().strip()) > 0 else ""
-            stats["background"] = self.input_Background.text().strip() if len(self.input_Background.text().strip()) > 0 else ""
-            stats["alignment"] = self.choose_Alignment.currentText()
-            stats["level"] = self.choose_Level.currentText()
+            stats["Name"] = character_name  
+            stats["Class"] = self.choose_Class.currentText() if len(self.choose_Class.currentText()) > 0 else "None"
+            stats["Race"] = self.input_Race.text().strip() if len(self.input_Race.text().strip()) > 0 else "None"
+            stats["Background"] = self.input_Background.text().strip() if len(self.input_Background.text().strip()) > 0 else "None"
+            stats["Alignment"] = self.choose_Alignment.currentText() if len(self.choose_Alignment.currentText()) > 0 else "None"
+            stats["Level"] = self.choose_Level.currentText()
             
             #get the stats
-            stats["strength"] = self.choose_STR.currentText()
-            stats["dexterity"] = self.choose_DEX.currentText()
-            stats["constitution"] = self.choose_CON.currentText()
-            stats["intelligence"] = self.choose_INT.currentText()
-            stats["wisdom"] = self.choose_WIS.currentText()
-            stats["charisma"] = self.choose_CHA.currentText()
+            stats["Strength"] = self.choose_STR.currentText()
+            stats["Dexterity"] = self.choose_DEX.currentText()
+            stats["Constitution"] = self.choose_CON.currentText()
+            stats["Intelligence"] = self.choose_INT.currentText()
+            stats["Wisdom"] = self.choose_WIS.currentText()
+            stats["Charisma"] = self.choose_CHA.currentText()
             
             return stats, character_name
             
     def get_skills(self) -> dict:
+        """
+        gets the info from the Skills tab 
+        and returns it as a dict
+        """
         #TODO: get the skills and proficiencies
         # get the saving throws
         skills = {}
@@ -121,9 +182,10 @@ class Logic(QMainWindow, Ui_mainWindow):
         return skills
     
     def get_proficiencies(self) -> dict:
-        #TODO: i dont think this one is needed (check over the stat sheet structure)
-        # nvm im dumb and this is needed
-        # get the proficiencies & equipemnt
+        """
+        gets the info from the Proficiencies tab 
+        and returns it as a dict
+        """
         proficiencies = {}
         proficiencies["Armor"] = self.input_Armor_Prof.text().strip() if len(self.input_Armor_Prof.text().strip()) > 0 else "None"
         proficiencies["Weapons"] = self.input_Weapons_Prof.text().strip() if len(self.input_Weapons_Prof.text().strip()) > 0 else "None"
@@ -136,7 +198,10 @@ class Logic(QMainWindow, Ui_mainWindow):
         return proficiencies
     
     def get_features(self) -> dict:
-        #TODO: get the features and traits
+        """
+        gets the info from the Features tab 
+        and returns it as a dict
+        """
         features = {}
         # get the text in the box
         features["Features_and_Traits"] = self.input_Features_and_Traits.toPlainText().strip() if len(self.input_Features_and_Traits.toPlainText().strip()) > 0 else "None"
@@ -144,7 +209,10 @@ class Logic(QMainWindow, Ui_mainWindow):
         return features
 
     def get_details(self) -> dict:
-        #TODO: get details (age, height, weight, eyes, skin, hair, and detailed background)
+        """
+        gets the info from the Details tab 
+        and returns it as a dict
+        """
         details = {}
         # get the physical deets
         details["Age"] = self.input_Age.text().strip() if len(self.input_Age.text().strip()) > 0 else "None"
@@ -163,7 +231,10 @@ class Logic(QMainWindow, Ui_mainWindow):
         return details
 
     def get_spells(self) -> dict:
-        #TODO: get spells (if any)
+        """
+        gets the info from the Spells tab 
+        and returns it as a dict
+        """
         spells = {}
         # get the spellcasting class, ability, save dc, and atk bonus
         spells["Spellcasting_Class"] = self.input_Spellcasting_Class.text().strip() if len(self.input_Spellcasting_Class.text().strip()) > 0 else "None"
@@ -187,24 +258,30 @@ class Logic(QMainWindow, Ui_mainWindow):
         return spells
 
     def save(self) -> None:
-        #saves the info from stats to the json
-        all_stats = {}
+        """
+        saves all the info to a json file
+        named after the character
+        """
+        all_stats = {}     
+        data = self.get_attributes()   
+        #check is atributes is not None
+        if data is None:
+            return
         
-        stats, character_name = self.get_attributes()
-        skills = self.get_skills()
-        proficiencies = self.get_proficiencies()
-        features = self.get_features()
-        details = self.get_details()
-        spells = self.get_spells()
-        
-        all_stats["Attributes"] = stats
-        all_stats["Skills"] = skills
-        all_stats["Proficiencies"] = proficiencies
-        all_stats["Features"] = features
-        all_stats["Details"] = details
-        all_stats["Spells"] = spells
-        
-        if stats is not None:
+        stats, character_name = data
+        if stats is not None and character_name is not None:            
+            skills = self.get_skills()
+            proficiencies = self.get_proficiencies()
+            features = self.get_features()
+            details = self.get_details()
+            spells = self.get_spells()
+            
+            all_stats["Attributes"] = stats
+            all_stats["Skills"] = skills
+            all_stats["Proficiencies"] = proficiencies
+            all_stats["Features"] = features
+            all_stats["Details"] = details
+            all_stats["Spells"] = spells
             try:
                 filen_name = f"{character_name}.json"
                 with open(filen_name, "w") as f:
