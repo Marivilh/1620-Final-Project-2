@@ -466,16 +466,43 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.choose_INT.setCurrentIndex(self.choose_INT.findText(attributes.get("Intelligence", "10")))
         self.choose_WIS.setCurrentIndex(self.choose_WIS.findText(attributes.get("Wisdom", "10")))
         self.choose_CHA.setCurrentIndex(self.choose_CHA.findText(attributes.get("Charisma", "10")))
-        # update the modifiers after setting the attributes
-        #this also fills the skils tab
-        self.update_modifiers() 
-        
+                
         self.choose_AC.setValue(int(attributes.get("AC", "10")))
         self.choose_Initiative.setValue(int(attributes.get("Initiative", "1")))
         self.choose_Speed.setValue(int(attributes.get("Speed", "30")))
         self.choose_Hit_Points.setValue(int(attributes.get("Hit_Points", "10")))
         self.choose_Hit_Dice.setValue(int(attributes.get("Hit_Dice", "1")))
         
+        # update the modifiers after setting the attributes
+        # need to manually update the skills because of proficiencies
+        skills = data.get("Skills", {})
+        self.choose_STR_mod.setValue(int(skills.get("STR_save", "0")))
+        self.choose_DEX_mod.setValue(int(skills.get("DEX_save", "0")))
+        self.choose_CON_mod.setValue(int(skills.get("CON_save", "0")))
+        self.choose_INT_mod.setValue(int(skills.get("INT_save", "0")))
+        self.choose_WIS_mod.setValue(int(skills.get("WIS_save", "0")))
+        self.choose_CHA_mod.setValue(int(skills.get("CHA_save", "0")))
+        
+        # other skills
+        self.choose_Acrobatics.setValue(int(skills.get("Acrobatics", "0")))
+        self.choose_Animal_Handling.setValue(int(skills.get("Animal_Handling", "0")))
+        self.choose_Arcana.setValue(int(skills.get("Arcana", "0")))
+        self.choose_Athletics.setValue(int(skills.get("Athletics", "0")))
+        self.choose_Deception.setValue(int(skills.get("Deception", "0")))
+        self.choose_History.setValue(int(skills.get("History", "0")))
+        self.choose_Insight.setValue(int(skills.get("Insight", "0")))
+        self.choose_Intimidation.setValue(int(skills.get("Intimidation", "0")))
+        self.choose_Investigation.setValue(int(skills.get("Investigation", "0")))
+        self.choose_Medicine.setValue(int(skills.get("Medicine", "0")))
+        self.choose_Nature.setValue(int(skills.get("Nature", "0")))
+        self.choose_Perception.setValue(int(skills.get("Perception", "0")))
+        self.choose_Performance.setValue(int(skills.get("Performance", "0")))
+        self.choose_Persuasion.setValue(int(skills.get("Persuasion", "0")))
+        self.choose_Religion.setValue(int(skills.get("Religion", "0")))
+        self.choose_Sleight_of_Hand.setValue(int(skills.get("Sleight_of_Hand", "0")))
+        self.choose_Stealth.setValue(int(skills.get("Stealth", "0")))
+        self.choose_Survival.setValue(int(skills.get("Survival", "0")))
+
         self.label_Feedback.setText("Character loaded. Please check all tabs to ensure data is correct.")
         self.label_Feedback.setStyleSheet("color: green;")
         
@@ -505,7 +532,7 @@ class Logic(QMainWindow, Ui_mainWindow):
         self.input_Allies.setText(details.get("Allies", ""))
         self.input_Extra_Features.setText(details.get("Extra_Features", ""))
         
-        # TODO: fill the spells pages
+        # fill the spells pages
         spells = data.get("Spells", {})
         self.input_Spellcasting_Class.setText(spells.get("Spellcasting_Class", ""))
         self.choose_Spellcasting_Ability.setCurrentIndex(self.choose_Spellcasting_Ability.findText(spells.get("Spellcasting_Ability", "")))
