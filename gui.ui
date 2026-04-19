@@ -36,7 +36,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab_Attributes">
      <attribute name="title">
@@ -1219,7 +1219,7 @@
      <widget class="QLabel" name="label_ArmorClass">
       <property name="geometry">
        <rect>
-        <x>71</x>
+        <x>50</x>
         <y>281</y>
         <width>61</width>
         <height>16</height>
@@ -1232,7 +1232,7 @@
      <widget class="QLabel" name="label_Initiative">
       <property name="geometry">
        <rect>
-        <x>150</x>
+        <x>140</x>
         <y>280</y>
         <width>51</width>
         <height>16</height>
@@ -1245,7 +1245,7 @@
      <widget class="QLabel" name="label_Speed">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>220</x>
         <y>280</y>
         <width>51</width>
         <height>16</height>
@@ -1258,7 +1258,7 @@
      <widget class="QLabel" name="label_Hit_Points">
       <property name="geometry">
        <rect>
-        <x>290</x>
+        <x>300</x>
         <y>280</y>
         <width>74</width>
         <height>16</height>
@@ -1271,7 +1271,7 @@
      <widget class="QLabel" name="label_Hit_Dice">
       <property name="geometry">
        <rect>
-        <x>380</x>
+        <x>390</x>
         <y>280</y>
         <width>51</width>
         <height>16</height>
@@ -1284,7 +1284,7 @@
      <widget class="QSpinBox" name="choose_AC">
       <property name="geometry">
        <rect>
-        <x>60</x>
+        <x>40</x>
         <y>310</y>
         <width>71</width>
         <height>20</height>
@@ -1300,7 +1300,7 @@
      <widget class="QSpinBox" name="choose_Initiative">
       <property name="geometry">
        <rect>
-        <x>144</x>
+        <x>130</x>
         <y>311</y>
         <width>61</width>
         <height>19</height>
@@ -1316,9 +1316,9 @@
      <widget class="QSpinBox" name="choose_Speed">
       <property name="geometry">
        <rect>
-        <x>218</x>
+        <x>210</x>
         <y>311</y>
-        <width>61</width>
+        <width>71</width>
         <height>19</height>
        </rect>
       </property>
@@ -1337,7 +1337,7 @@
        <rect>
         <x>291</x>
         <y>311</y>
-        <width>59</width>
+        <width>71</width>
         <height>19</height>
        </rect>
       </property>
@@ -1451,7 +1451,7 @@
      <widget class="QSpinBox" name="choose_Hit_Dice">
       <property name="geometry">
        <rect>
-        <x>369</x>
+        <x>380</x>
         <y>311</y>
         <width>71</width>
         <height>19</height>
@@ -1521,10 +1521,10 @@
        <item row="0" column="1">
         <widget class="QSpinBox" name="choose_Insight">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1538,10 +1538,10 @@
        <item row="1" column="1">
         <widget class="QSpinBox" name="choose_Intimidation">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1562,10 +1562,10 @@
        <item row="4" column="1">
         <widget class="QSpinBox" name="choose_Nature">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1579,20 +1579,20 @@
        <item row="3" column="1">
         <widget class="QSpinBox" name="choose_Medicine">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
        <item row="5" column="1">
         <widget class="QSpinBox" name="choose_Perception">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1606,10 +1606,10 @@
        <item row="2" column="1">
         <widget class="QSpinBox" name="choose_Investigation">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1635,10 +1635,10 @@
        <item row="0" column="1">
         <widget class="QSpinBox" name="choose_Performance">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1652,10 +1652,10 @@
        <item row="1" column="1">
         <widget class="QSpinBox" name="choose_Persuasion">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1669,10 +1669,10 @@
        <item row="2" column="1">
         <widget class="QSpinBox" name="choose_Religion">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1686,10 +1686,10 @@
        <item row="3" column="1">
         <widget class="QSpinBox" name="choose_Sleight_of_Hand">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1703,10 +1703,10 @@
        <item row="4" column="1">
         <widget class="QSpinBox" name="choose_Stealth">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1720,10 +1720,10 @@
        <item row="5" column="1">
         <widget class="QSpinBox" name="choose_Survival">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1749,10 +1749,10 @@
        <item row="0" column="1">
         <widget class="QSpinBox" name="choose_Acrobatics">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1766,10 +1766,10 @@
        <item row="1" column="1">
         <widget class="QSpinBox" name="choose_Animal_Handling">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1783,10 +1783,10 @@
        <item row="2" column="1">
         <widget class="QSpinBox" name="choose_Arcana">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1800,10 +1800,10 @@
        <item row="3" column="1">
         <widget class="QSpinBox" name="choose_Athletics">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1817,10 +1817,10 @@
        <item row="4" column="1">
         <widget class="QSpinBox" name="choose_Deception">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1834,10 +1834,10 @@
        <item row="5" column="1">
         <widget class="QSpinBox" name="choose_History">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1846,9 +1846,9 @@
      <widget class="QWidget" name="layoutWidget">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>20</x>
         <y>40</y>
-        <width>131</width>
+        <width>141</width>
         <height>201</height>
        </rect>
       </property>
@@ -1863,30 +1863,30 @@
        <item row="2" column="1">
         <widget class="QSpinBox" name="choose_CON_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
        <item row="4" column="1">
         <widget class="QSpinBox" name="choose_WIS_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
        <item row="3" column="1">
         <widget class="QSpinBox" name="choose_INT_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
@@ -1907,30 +1907,30 @@
        <item row="5" column="1">
         <widget class="QSpinBox" name="choose_CHA_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
        <item row="0" column="1">
         <widget class="QSpinBox" name="choose_STR_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
        <item row="1" column="1">
         <widget class="QSpinBox" name="choose_DEX_mod">
          <property name="minimum">
-          <number>-10</number>
+          <number>-20</number>
          </property>
          <property name="maximum">
-          <number>10</number>
+          <number>99</number>
          </property>
         </widget>
        </item>
