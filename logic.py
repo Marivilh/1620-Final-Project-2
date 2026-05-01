@@ -390,6 +390,9 @@ class Logic(QMainWindow, Ui_mainWindow):
         saves all the info to a json file
         named after the character
         """
+        # this was one of the few parts were i used Gemini to help me come up with a solution.
+        # i asked them how the information should be saved and they recommended a .json file
+        # so i used the json module to save and load the character data
         all_stats = {}     
         data = self.get_attributes()   
         #check is atributes is not None
